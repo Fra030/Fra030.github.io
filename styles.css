@@ -10,7 +10,8 @@
 html,body{height:100%}
 body{margin:0;background:linear-gradient(180deg,var(--bg),#fff7e6);font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;color:var(--text);overflow:hidden}
 .container{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem;position:relative;z-index:2}
-.message{max-width:36ch;text-align:center;font-size:clamp(1.1rem,5vw,2.4rem);line-height:1.15;margin:0;padding:1rem 1.25rem;background:rgba(255,255,255,0.6);border-radius:14px;box-shadow:0 8px 30px rgba(58,46,42,0.06)}
+.message{max-width:36ch;text-align:center;font-size:clamp(1.1rem,5vw,2.4rem);line-height:1.15;margin:0;padding:1rem 1.25rem;background:rgba(255,255,255,0.6);border-radius:14px;box-shadow:0 8px 30px rgba(58,46,42,0.06);cursor:pointer;transition:transform .2s ease,background-color .2s ease}
+.message:hover,.message:focus-visible{transform:translateY(-2px);background:rgba(255,255,255,0.8);outline:none}
 
 #sky{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:1}
 .sunflower{position:absolute;top:-12vh;pointer-events:auto}

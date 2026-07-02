@@ -1,5 +1,12 @@
 (() => {
   const sky = document.getElementById('sky');
+  const message = document.querySelector('.message');
+  const messages = [
+    'mi dispiace per ieri sera (clicca per continuare)',
+    'vorrei che con me tu possa arrivare a sentirti al sicuro (clicca per continuare)',
+    'ti voglio bene'
+  ];
+  let currentMessage = 0;
   const maxActive = 30;
   const spawnInterval = 650; // ms, densità media
   let active = 0;
@@ -25,6 +32,21 @@
   </svg>`;
 
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (message) {
+    const advanceMessage = () => {
+      currentMessage = (currentMessage + 1) % messages.length;
+      message.textContent = messages[currentMessage];
+    };
+
+    message.addEventListener('click', advanceMessage);
+    message.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        advanceMessage();
+      }
+    });
+  }
 
   function rand(min, max){ return Math.random()*(max-min)+min }
 
