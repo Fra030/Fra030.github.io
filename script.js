@@ -34,10 +34,19 @@
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if (message) {
-    const advanceMessage = () => {
-      currentMessage = (currentMessage + 1) % messages.length;
+    const showMessage = (index) => {
+      currentMessage = index;
+      message.classList.remove('is-appearing');
+      void message.offsetWidth;
       message.textContent = messages[currentMessage];
+      message.classList.add('is-appearing');
     };
+
+    const advanceMessage = () => {
+      showMessage((currentMessage + 1) % messages.length);
+    };
+
+    showMessage(0);
 
     message.addEventListener('click', advanceMessage);
     message.addEventListener('keydown', (event) => {
