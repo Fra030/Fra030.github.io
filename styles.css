@@ -1,0 +1,35 @@
+:root{
+  --bg: #fff8ed;
+  --ochre: #f4c15b;
+  --sunflower: #f7d230;
+  --leaf: #7aa06a;
+  --text: #3a2e2a;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:linear-gradient(180deg,var(--bg),#fff7e6);font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;color:var(--text);overflow:hidden}
+.container{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem;position:relative;z-index:2}
+.message{max-width:36ch;text-align:center;font-size:clamp(1.1rem,5vw,2.4rem);line-height:1.15;margin:0;padding:1rem 1.25rem;background:rgba(255,255,255,0.6);border-radius:14px;box-shadow:0 8px 30px rgba(58,46,42,0.06)}
+
+#sky{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+.sunflower{position:absolute;top:-12vh;pointer-events:auto}
+.sunflower{will-change:transform,opacity}
+.sunflower .flower{display:block}
+.sunflower .flower svg{display:block;width:100%;height:auto;transform-origin:center center}
+
+@keyframes fall{to{transform:translateY(120vh)}}
+@keyframes sway{0%{transform:translateX(0) rotate(-6deg)}50%{transform:translateX(18px) rotate(10deg)}100%{transform:translateX(0) rotate(-6deg)}}
+@keyframes rotate{to{transform:rotate(360deg)}}
+
+.sunflower{animation:fall var(--fall-duration,12s) linear forwards}
+.sunflower .flower{animation:sway var(--sway-duration,6s) ease-in-out infinite}
+.sunflower .flower svg{animation:rotate var(--rot-duration,10s) linear infinite}
+
+.petal{position:absolute;border-radius:50%;pointer-events:none}
+
+@media (prefers-reduced-motion: reduce){
+  .sunflower{animation:none !important;opacity:0.95}
+  .sunflower .flower{animation:none !important}
+  .sunflower .flower svg{animation:none !important}
+}
