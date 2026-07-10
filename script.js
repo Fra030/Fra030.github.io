@@ -2,9 +2,11 @@
   const sky = document.getElementById('sky');
   const message = document.querySelector('.message');
   const messages = [
-    'mi dispiace per ieri sera\n(clicca per continuare)',
-    'vorrei che con me tu possa arrivare a sentirti al sicuro\n(clicca per continuare)',
-    'ti voglio bene'
+    'mi dispiace per ieri sera, ho fatto un casino\n(clicca per continuare)',
+    'stavo male e ti ho ferita, e niente può giustificare questa cosa\n(clicca per continuare)',
+    'vorrei sistemare le cose, se ti va di parlarne\n(clicca per continuare)',
+    'ti voglio bene, e mi dispiace davvero\n(clicca per continuare)',
+    'spero che tu possa perdonarmi',
   ];
   let currentMessage = 0;
   const maxActive = 30;
