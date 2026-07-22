@@ -91,7 +91,7 @@
     };
 
     const showYesResponse = () => {
-      renderMessage('yeeee, cosa vuoi fare? e a che ora?\n(inserisci le risposte qui sotto)', 'done');
+      renderMessage('yeeee, cosa vuoi fare? e a che ora?\n(inserisci le risposte qui di lato)', 'done');
       showResponseFields();
     };
 
