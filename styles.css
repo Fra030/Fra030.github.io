@@ -44,3 +44,18 @@ body{margin:0;background:linear-gradient(180deg,var(--bg),#fff7e6);font-family: 
   .sunflower .flower{animation:none !important}
   .sunflower .flower svg{animation:none !important}
 }
+
+.message-actions{margin-top:1rem;display:flex;flex-direction:column;align-items:center;gap:0.85rem;opacity:0;transform:translateY(10px);transition:opacity .25s ease,transform .25s ease}
+.message-actions.has-actions{opacity:1;transform:translateY(0)}
+.button-group{display:flex;gap:0.75rem;flex-wrap:wrap;justify-content:center}
+.message-actions button{min-width:96px;padding:0.9rem 1.1rem;border:none;border-radius:999px;background:var(--sunflower);color:#2f2315;font-weight:700;cursor:pointer;box-shadow:0 8px 18px rgba(75,47,16,0.16);transition:transform .18s ease,filter .18s ease}
+.message-actions button:hover,.message-actions button:focus-visible{transform:translateY(-1px);filter:brightness(1.03);outline:none}
+.message-actions label{display:flex;flex-direction:column;gap:0.4rem;width:min(100%, 280px);font-size:0.95rem;color:rgba(58,46,42,0.88);font-weight:600}
+.message-actions select,
+.message-actions input{width:100%;padding:0.85rem 1rem;border:1px solid rgba(58,46,42,0.12);border-radius:14px;background:rgba(255,255,255,0.88);color:var(--text);font:inherit}
+.message-actions input::placeholder{color:rgba(58,46,42,0.5)}
+.message-actions select{appearance:none}
+.message-actions .submit-response{width:min(100%, 240px);padding:0.95rem 1.25rem;margin-top:0.25rem;border:none;border-radius:999px;background:var(--leaf);color:#fff;font-weight:700;cursor:pointer;box-shadow:0 10px 18px rgba(53,85,58,0.18);transition:transform .18s ease,filter .18s ease}
+.message-actions .submit-response:hover:not(:disabled),
+.message-actions .submit-response:focus-visible{transform:translateY(-1px);filter:brightness(1.05);outline:none}
+.message-actions .submit-response:disabled{opacity:0.65;cursor:not-allowed}
