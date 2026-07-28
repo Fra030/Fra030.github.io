@@ -2,11 +2,15 @@
   const sky = document.getElementById('sky');
   const message = document.querySelector('.message');
   const messages = [
-    'sei la persona più preziosa che ho\n(clicca per continuare)',
-    'ti voglio più bene di quanto tu possa immaginare\n(clicca per continuare)',
-    'anche se a volte sono un po\' coglione e sbaglio\n(clicca per continuare)',
-    'ti va di fare qualcosa insieme sta sera?'
+    'mi dispiace di averti fatta arrabbiare\n(clicca per continuare)',
+    'anche se abbiamo idee diverse, rimani la luce della mia anima\n(clicca per continuare)',
+    'e qualunque cosa accada\n(clicca per continuare)',
+    'ricordati che ti voglio bene ❤️\n(clicca per continuare)',
+    'sempre e comunque\n(clicca per continuare)',
+    'ed ecco per te un abbraccio virtuale (io sono badtz-maru e tu sei kuromi❤️)\n(clicca per continuare)'
   ];
+  const finalImageSrc = 'kuromi-abbraccio.png';
+  const finalImageAlt = 'Kuromi e amico che si abbracciano';
   let currentMessage = 0;
   const maxActive = 30;
   const spawnInterval = 650; // ms, densità media
@@ -35,151 +39,43 @@
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if (message) {
-    const actions = document.createElement('div');
-    actions.className = 'message-actions';
-    message.after(actions);
-
-    let messageState = 'normal';
-
-    const clearActions = () => {
-      actions.innerHTML = '';
-      actions.removeAttribute('data-phase');
-      actions.classList.remove('has-actions');
-    };
-
-    const renderMessage = (text, state = 'normal') => {
-      messageState = state;
-      clearActions();
+    const renderMessage = (text) => {
       message.classList.remove('is-appearing');
       void message.offsetWidth;
       message.textContent = text;
       message.classList.add('is-appearing');
     };
 
+    const showFinalImage = () => {
+      const existing = document.querySelector('.final-image');
+      if (existing) return;
+
+      const img = document.createElement('img');
+      img.className = 'final-image';
+      img.src = finalImageSrc;
+      img.alt = finalImageAlt;
+      img.loading = 'lazy';
+      message.insertAdjacentElement('afterend', img);
+    };
+
     const showMessage = (index) => {
       currentMessage = index;
-      renderMessage(messages[currentMessage], 'normal');
-    };
-
-    const showAnswerButtons = () => {
-      if (messageState === 'awaitingResponse') return;
-      messageState = 'awaitingResponse';
-      clearActions();
-      actions.dataset.phase = 'choices';
-      actions.classList.add('has-actions');
-
-      const buttonGroup = document.createElement('div');
-      buttonGroup.className = 'button-group';
-
-      const yesButton = document.createElement('button');
-      yesButton.type = 'button';
-      yesButton.textContent = 'Sì';
-      yesButton.addEventListener('click', showYesResponse);
-
-      const noButton = document.createElement('button');
-      noButton.type = 'button';
-      noButton.textContent = 'No';
-      noButton.addEventListener('click', showNoResponse);
-
-      buttonGroup.append(noButton, yesButton);
-      actions.append(buttonGroup);
-      yesButton.focus();
-    };
-
-    const showNoResponse = () => {
-      renderMessage('ah... va bene non fa niente, sarà per la prossima volta', 'done');
-    };
-
-    const showYesResponse = () => {
-      renderMessage('yeeee, cosa vuoi fare? e a che ora?\n(inserisci le risposte qui di lato)', 'done');
-      showResponseFields();
-    };
-
-    const showResponseFields = () => {
-      clearActions();
-      actions.dataset.phase = 'response';
-      actions.classList.add('has-actions');
-
-      const timeLabel = document.createElement('label');
-      timeLabel.textContent = 'Orario';
-      const timeSelect = document.createElement('select');
-      timeSelect.name = 'meeting-time';
-      ['17:00','17:30','18:00','18:30','19:00','19:30','20:00','20:30','21:00','21:30','22:00','22:30','23:00'].forEach((time) => {
-        const option = document.createElement('option');
-        option.value = time;
-        option.textContent = time;
-        timeSelect.append(option);
-      });
-      timeLabel.appendChild(timeSelect);
-
-      const responseLabel = document.createElement('label');
-      responseLabel.textContent = 'Risposta';
-      const responseInput = document.createElement('input');
-      responseInput.type = 'text';
-      responseInput.name = 'meeting-response';
-      responseInput.placeholder = 'Inserisci qui la tua risposta';
-      responseInput.autocomplete = 'off';
-      responseLabel.appendChild(responseInput);
-
-      const submitButton = document.createElement('button');
-      submitButton.type = 'button';
-      submitButton.textContent = 'Invia';
-      submitButton.className = 'submit-response';
-      submitButton.addEventListener('click', () => submitResponse(timeSelect, responseInput, submitButton));
-
-      actions.append(timeLabel, responseLabel, submitButton);
-      responseInput.focus();
-    };
-
-    const submitResponse = (timeSelect, responseInput, submitButton) => {
-      const answer = responseInput.value.trim();
-      const time = timeSelect.value;
-
-      if (!answer) {
-        responseInput.focus();
-        responseInput.setCustomValidity('Per favore inserisci la tua risposta');
-        responseInput.reportValidity();
-        return;
+      renderMessage(messages[currentMessage]);
+      if (currentMessage === messages.length - 1) {
+        showFinalImage();
       }
-
-      submitButton.disabled = true;
-      submitButton.textContent = 'Invio in corso...';
-
-      fetch('https://formspree.io/f/mdaqdqpv', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          'ora': time,
-          'attività': answer
-        })
-      })
-      .then((response) => {
-        if (!response.ok) throw new Error('Errore invio');
-        return response.json();
-      })
-      .then(() => {
-        renderMessage('Grazieeeee! ci sentiamo sta sera :D', 'done');
-      })
-      .catch(() => {
-        submitButton.disabled = false;
-        submitButton.textContent = 'Invia';
-        renderMessage('Qualcosa è andato storto. Riprova tra un momento.', 'done');
-      });
     };
 
     const advanceMessage = () => {
-      showMessage((currentMessage + 1) % messages.length);
+      if (currentMessage < messages.length - 1) {
+        showMessage(currentMessage + 1);
+      } else {
+        showMessage(0);
+        document.getElementsByClassName('final-image')[0]?.remove();
+      }
     };
 
     const handleMessageActivation = () => {
-      if (currentMessage === messages.length - 1 && messageState === 'normal') {
-        showAnswerButtons();
-        return;
-      }
-      if (messageState === 'awaitingResponse') return;
       advanceMessage();
     };
 
