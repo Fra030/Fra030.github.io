@@ -2,12 +2,12 @@
   const sky = document.getElementById('sky');
   const message = document.querySelector('.message');
   const messages = [
-    'non so se questa è l'ultima volta che vedrai questo sito\n(clicca per continuare)',
+    'non so se questa è l\'ultima volta che vedrai questo sito\n(clicca per continuare)',
     'ma qualsiasi cosa tu decida di fare, ci tengo a dirti queste cose\n(clicca per continuare)',
     'ci tengo a dirti che mi dispiace\n(clicca per continuare)',
     'mi sono reso conto di quanto sono stato stupido ieri sera\n(clicca per continuare)',
     'acciecato dal dolore ti ho risposto male, non vedendo il tuo tentativo di rimediare nei miei confronti\n(clicca per continuare)',
-    'e di questo mi dispiace infinitamente\n(clicca per continuare)'
+    'e di questo mi dispiace infinitamente e spero che mi darai l/'occasione di rimediare, anche se capisco se non lo farai\n(clicca per continuare)'
   ];
   const finalImageSrc = 'kuromi-abbraccio.png';
   const finalImageAlt = 'Kuromi e amico che si abbracciano';
