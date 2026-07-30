@@ -2,12 +2,12 @@
   const sky = document.getElementById('sky');
   const message = document.querySelector('.message');
   const messages = [
-    'mi dispiace di averti fatta arrabbiare\n(clicca per continuare)',
-    'anche se abbiamo idee diverse, rimani la luce della mia anima\n(clicca per continuare)',
-    'e qualunque cosa accada\n(clicca per continuare)',
-    'ricordati che ti voglio bene ❤️\n(clicca per continuare)',
-    'sempre e comunque\n(clicca per continuare)',
-    'ed ecco per te un abbraccio virtuale (io sono badtz-maru e tu sei kuromi❤️)\n(clicca per continuare)'
+    'non so se questa è l'ultima volta che vedrai questo sito\n(clicca per continuare)',
+    'ma qualsiasi cosa tu decida di fare, ci tengo a dirti queste cose\n(clicca per continuare)',
+    'ci tengo a dirti che mi dispiace\n(clicca per continuare)',
+    'mi sono reso conto di quanto sono stato stupido ieri sera\n(clicca per continuare)',
+    'acciecato dal dolore ti ho risposto male, non vedendo il tuo tentativo di rimediare nei miei confronti\n(clicca per continuare)',
+    'e di questo mi dispiace infinitamente\n(clicca per continuare)'
   ];
   const finalImageSrc = 'kuromi-abbraccio.png';
   const finalImageAlt = 'Kuromi e amico che si abbracciano';
