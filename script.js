@@ -9,7 +9,7 @@
     'acciecato dal dolore ti ho risposto male, non vedendo il tuo tentativo di rimediare nei miei confronti\n(clicca per continuare)',
     'e di questo mi dispiace infinitamente e spero che mi darai l\'occasione di rimediare, anche se capisco se non lo farai\n(clicca per continuare)'
   ];
-  const finalImageSrc = 'kuromi-abbraccio.png';
+  const finalImageSrc = 'im-sorry-kuromi.png';
   const finalImageAlt = 'Kuromi e amico che si abbracciano';
   let currentMessage = 0;
   const maxActive = 30;
